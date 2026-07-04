@@ -1,6 +1,7 @@
 // TSConfig for modules that run in Node.js environment via either transpilation or type-stripping.
 {
-  "extends": "@tsconfig/node24/tsconfig.json",
+  // Use a published Node.js TSConfig. Adjust version if you target a different Node version.
+  "extends": "./tsconfig.json",
   "include": [
     "vite.config.*",
     "vitest.config.*",
@@ -11,7 +12,7 @@
   "compilerOptions": {
     // Most tools use transpilation instead of Node.js's native type-stripping.
     // Bundler mode provides a smoother developer experience.
-    "module": "preserve",
+    "module": "ESNext",
     "moduleResolution": "bundler",
 
     // Include Node.js types and avoid accidentally including other `@types/*` packages.
