@@ -1,7 +1,9 @@
 import { ref } from "vue";
+import { RouterView, useRoute } from "vue-router";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Main from "@/components/Main.vue";
+const route = useRoute();
 const mainRef = ref(null);
 const handleGenerate = () => {
     mainRef.value?.generateQuote();
@@ -37,23 +39,37 @@ const __VLS_7 = {
 };
 var __VLS_3;
 var __VLS_4;
-const __VLS_8 = Main;
+__VLS_asFunctionalElement1(__VLS_intrinsics.main, __VLS_intrinsics.main)({
+    ...{ class: "app-shell" },
+});
+/** @type {__VLS_StyleScopedClasses['app-shell']} */ ;
+if (__VLS_ctx.route.path === '/emoji') {
+    let __VLS_8;
+    /** @ts-ignore @type { | typeof __VLS_components.RouterView} */
+    RouterView;
+    // @ts-ignore
+    const __VLS_9 = __VLS_asFunctionalComponent1(__VLS_8, new __VLS_8({}));
+    const __VLS_10 = __VLS_9({}, ...__VLS_functionalComponentArgsRest(__VLS_9));
+}
+else {
+    const __VLS_13 = Main;
+    // @ts-ignore
+    const __VLS_14 = __VLS_asFunctionalComponent1(__VLS_13, new __VLS_13({
+        ref: "mainRef",
+    }));
+    const __VLS_15 = __VLS_14({
+        ref: "mainRef",
+    }, ...__VLS_functionalComponentArgsRest(__VLS_14));
+    var __VLS_18;
+    var __VLS_16;
+}
+const __VLS_20 = Footer;
 // @ts-ignore
-const __VLS_9 = __VLS_asFunctionalComponent1(__VLS_8, new __VLS_8({
-    ref: "mainRef",
-}));
-const __VLS_10 = __VLS_9({
-    ref: "mainRef",
-}, ...__VLS_functionalComponentArgsRest(__VLS_9));
-var __VLS_13;
-var __VLS_11;
-const __VLS_15 = Footer;
+const __VLS_21 = __VLS_asFunctionalComponent1(__VLS_20, new __VLS_20({}));
+const __VLS_22 = __VLS_21({}, ...__VLS_functionalComponentArgsRest(__VLS_21));
 // @ts-ignore
-const __VLS_16 = __VLS_asFunctionalComponent1(__VLS_15, new __VLS_15({}));
-const __VLS_17 = __VLS_16({}, ...__VLS_functionalComponentArgsRest(__VLS_16));
+var __VLS_19 = __VLS_18;
 // @ts-ignore
-var __VLS_14 = __VLS_13;
-// @ts-ignore
-[handleGenerate, handleToggleTheme,];
+[handleGenerate, handleToggleTheme, route,];
 const __VLS_export = (await import('vue')).defineComponent({});
 export default {};

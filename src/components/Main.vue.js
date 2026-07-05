@@ -1,15 +1,5 @@
 import { computed, ref } from "vue";
 import { programmingQuotes } from "@/data/programmingQuotes";
-const generateQuote = () => {
-    isTransitioning.value = true;
-    setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * programmingQuotes.length);
-        const selectedQuote = programmingQuotes[randomIndex] ?? initialQuote;
-        quote.value = selectedQuote.quote;
-        author.value = selectedQuote.author;
-        isTransitioning.value = false;
-    }, 180);
-};
 const initialQuote = programmingQuotes[0] ?? {
     quote: "Keep coding.",
     author: "Developer",
@@ -20,6 +10,16 @@ const isDarkMode = ref(false);
 const isTransitioning = ref(false);
 const copied = ref(false);
 const themeClass = computed(() => (isDarkMode.value ? "dark" : "light"));
+const generateQuote = () => {
+    isTransitioning.value = true;
+    setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * programmingQuotes.length);
+        const selectedQuote = programmingQuotes[randomIndex] ?? initialQuote;
+        quote.value = selectedQuote.quote;
+        author.value = selectedQuote.author;
+        isTransitioning.value = false;
+    }, 180);
+};
 const toggleTheme = () => {
     isDarkMode.value = !isDarkMode.value;
 };
@@ -66,6 +66,12 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "badge" },
 });
 /** @type {__VLS_StyleScopedClasses['badge']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
+    ...{ onClick: (__VLS_ctx.toggleTheme) },
+    ...{ class: "theme-btn" },
+});
+/** @type {__VLS_StyleScopedClasses['theme-btn']} */ ;
+(__VLS_ctx.isDarkMode ? "☀️ Light" : "🌙 Dark");
 __VLS_asFunctionalElement1(__VLS_intrinsics.section, __VLS_intrinsics.section)({});
 __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
     ...{ class: ({ transitioning: __VLS_ctx.isTransitioning }) },
@@ -92,6 +98,6 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.generateQuote) },
 });
 // @ts-ignore
-[themeClass, isTransitioning, quote, author, copyQuote, copied, generateQuote,];
+[themeClass, toggleTheme, isDarkMode, isTransitioning, quote, author, copyQuote, copied, generateQuote,];
 const __VLS_export = (await import('vue')).defineComponent({});
 export default {};
