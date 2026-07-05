@@ -6,12 +6,15 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #406473;
+  background: linear-gradient(135deg, #2f5160 0%, #5d8290 100%);
+  min-height: 100vh;
 }
 
 #app {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   padding: 25px;
 }

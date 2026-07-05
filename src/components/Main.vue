@@ -1,47 +1,159 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { programmingQuotes } from "@/data/programmingQuotes";
 
-const quote = ref("First, solve the problem. Then, write the code.");
-const author = ref("John Johnson");
+const initialQuote = programmingQuotes[0] ?? {
+  quote: "Keep coding.",
+  author: "Developer",
+};
+const quote = ref(initialQuote.quote);
+const author = ref(initialQuote.author);
+const isDarkMode = ref(false);
+const isTransitioning = ref(false);
+const copied = ref(false);
 
-const isButtonDisabled = ref(true);
+const themeClass = computed(() => (isDarkMode.value ? "dark" : "light"));
+
+const generateQuote = () => {
+  isTransitioning.value = true;
+
+  setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * programmingQuotes.length);
+    const selectedQuote = programmingQuotes[randomIndex] ?? initialQuote;
+
+    quote.value = selectedQuote.quote;
+    author.value = selectedQuote.author;
+    isTransitioning.value = false;
+  }, 180);
+};
+
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value;
+};
+
+const copyQuote = async () => {
+  const textToCopy = `"${quote.value}" - ${author.value}`;
+
+  try {
+    await navigator.clipboard.writeText(textToCopy);
+    copied.value = true;
+    setTimeout(() => {
+      copied.value = false;
+    }, 1500);
+  } catch {
+    copied.value = false;
+  }
+};
+
+generateQuote();
 </script>
 
 <template>
-  <main>
+  <main :class="themeClass">
+    <div class="top-row">
+      <div class="badge">Developer Inspiration</div>
+      <button class="theme-btn" @click="toggleTheme">
+        {{ isDarkMode ? "☀️ Light" : "🌙 Dark" }}
+      </button>
+    </div>
     <section>
-      <p>{{ quote }}</p>
+      <p :class="{ transitioning: isTransitioning }">{{ quote }}</p>
       <span>{{ author }}</span>
     </section>
-    <button>Another!</button>
-    <button :disabled="isButtonDisabled">Share</button>
+    <div class="footer-row">
+      <div class="actions">
+        <button class="secondary-btn" @click="copyQuote">
+          {{ copied ? "Copied!" : "Copy" }}
+        </button>
+        <button @click="generateQuote">Generate</button>
+      </div>
+    </div>
   </main>
 </template>
 
 <style scoped>
 main {
-  background: #ccd6d9;
   width: 100%;
-  max-width: 90%;
-  border-radius: 0 15px 0 15px;
-  padding: 35px;
+  max-width: 760px;
+  border-radius: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(64, 100, 115, 0.15);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+main.light {
+  background: linear-gradient(135deg, #f4f8fb 0%, #dbe7eb 100%);
+  color: #23353b;
+}
+
+main.dark {
+  background: linear-gradient(135deg, #17252b 0%, #23353b 100%);
+  color: #f4f8fb;
+}
+
+.top-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  background: #406473;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.theme-btn,
+.secondary-btn {
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.theme-btn {
+  background: rgba(64, 100, 115, 0.12);
+  color: inherit;
 }
 
 section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 25px;
+  gap: 12px;
+  margin-bottom: 8px;
+  min-height: 140px;
+  justify-content: center;
 }
 
 p {
-  font-weight: bold;
+  font-weight: 700;
   font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  color: inherit;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+p.transitioning {
+  opacity: 0.4;
 }
 
 p::before {
@@ -55,32 +167,94 @@ p::after {
 span {
   align-self: end;
   color: #406473;
+  font-weight: 700;
+  font-size: 0.95rem;
 }
 
-span ::before {
+main.dark span {
+  color: #9dc4d0;
+}
+
+span::before {
   content: "- ";
 }
 
+.footer-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #56717a;
+}
+
+small {
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.secondary-btn {
+  background: rgba(64, 100, 115, 0.16);
+  color: inherit;
+}
+
 button {
-  background: #406473;
+  background: linear-gradient(135deg, #406473 0%, #2f5160 100%);
   color: white;
   border: 0;
-  padding: 10px;
-  font-size: 1.2rem;
-  border-radius: 0 5px 0 5px;
-  font-weight: bold;
-  margin-top: 20px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 999px;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  box-shadow: 0 8px 18px rgba(64, 100, 115, 0.25);
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(64, 100, 115, 0.3);
 }
 
-button:disabled {
-  background: #406473;
-  opacity: 0.5;
-  cursor: not-allowed;
+main.dark .theme-btn,
+main.dark .secondary-btn {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .actions button {
+    flex: 1 1 140px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 </style>
