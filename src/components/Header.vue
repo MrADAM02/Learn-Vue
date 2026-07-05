@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { computed } from "vue";
+import { useRoute, RouterLink } from "vue-router";
 
 const route = useRoute();
-const title = ref("Quote generator");
+
+const pageTitles: Record<string, string> = {
+  "/": "Quote generator",
+  "/emoji": "Emoji generator",
+};
+
+const title = computed(() => pageTitles[route.path] ?? "App generator");
 
 const navItems = [
   { label: "Quotes", to: "/" },
@@ -18,7 +24,6 @@ const isActive = (path: string) => route.path === path;
     <div class="brand-block">
       <div class="brand-mark">✦</div>
       <div>
-        <p class="eyebrow">Developer inspiration</p>
         <h1>{{ title }}</h1>
       </div>
     </div>

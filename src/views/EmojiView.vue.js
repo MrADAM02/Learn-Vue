@@ -1,8 +1,7 @@
 import { onMounted, ref } from "vue";
 const emoji = ref("😀");
 const isLoading = ref(false);
-const selectedCategory = ref("all");
-const categories = ["all", "smileys", "animals", "food", "travel", "activity"];
+const copyMessage = ref("Copy emoji");
 const decodeHtmlEntity = (entity) => {
     const parser = new DOMParser();
     const decoded = parser.parseFromString(entity, "text/html").documentElement
@@ -35,23 +34,30 @@ const selectEmojiValue = (item) => {
 const fetchRandomEmoji = async () => {
     isLoading.value = true;
     try {
-        const url = selectedCategory.value === "all"
-            ? "https://emojihub.yurace.pro/api/random"
-            : `https://emojihub.yurace.pro/api/all/category/${selectedCategory.value}`;
-        const response = await fetch(url);
+        const response = await fetch("https://emojihub.yurace.pro/api/random");
         if (!response.ok) {
             throw new Error("Failed to load emoji");
         }
         const data = await response.json();
-        const payload = Array.isArray(data) ? data : [data];
-        const randomItem = payload[Math.floor(Math.random() * payload.length)];
-        emoji.value = selectEmojiValue(randomItem);
+        emoji.value = selectEmojiValue(data);
     }
     catch {
         emoji.value = "😅";
     }
     finally {
         isLoading.value = false;
+    }
+};
+const copyEmoji = async () => {
+    try {
+        await navigator.clipboard.writeText(emoji.value);
+        copyMessage.value = "Copied!";
+        window.setTimeout(() => {
+            copyMessage.value = "Copy emoji";
+        }, 1200);
+    }
+    catch {
+        copyMessage.value = "Copy failed";
     }
 };
 onMounted(() => {
@@ -64,35 +70,17 @@ const __VLS_ctx = {
 let __VLS_components;
 let __VLS_intrinsics;
 let __VLS_directives;
-/** @type {__VLS_StyleScopedClasses['chip']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-display']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "emoji-page" },
 });
 /** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({});
 __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({});
-__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "category-row" },
-});
-/** @type {__VLS_StyleScopedClasses['category-row']} */ ;
-for (const [category] of __VLS_vFor((__VLS_ctx.categories))) {
-    __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
-        ...{ onClick: (...[$event]) => {
-                return __VLS_ctx.selectedCategory = category;
-                // @ts-ignore
-                [categories, selectedCategory,];
-            } },
-        key: (category),
-        ...{ class: "chip" },
-        ...{ class: ({ active: __VLS_ctx.selectedCategory === category }) },
-    });
-    /** @type {__VLS_StyleScopedClasses['chip']} */ ;
-    /** @type {__VLS_StyleScopedClasses['active']} */ ;
-    (category);
-    // @ts-ignore
-    [selectedCategory,];
-}
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "emoji-card" },
 });
@@ -110,10 +98,22 @@ else {
     /** @type {__VLS_StyleScopedClasses['emoji-display']} */ ;
     (__VLS_ctx.emoji);
 }
+__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+    ...{ class: "emoji-actions" },
+});
+/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.fetchRandomEmoji) },
+    ...{ class: "secondary" },
 });
+/** @type {__VLS_StyleScopedClasses['secondary']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
+    ...{ onClick: (__VLS_ctx.copyEmoji) },
+    ...{ class: "primary" },
+});
+/** @type {__VLS_StyleScopedClasses['primary']} */ ;
+(__VLS_ctx.copyMessage);
 // @ts-ignore
-[isLoading, emoji, fetchRandomEmoji,];
+[isLoading, emoji, fetchRandomEmoji, copyEmoji, copyMessage,];
 const __VLS_export = (await import('vue')).defineComponent({});
 export default {};

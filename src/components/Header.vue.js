@@ -1,7 +1,11 @@
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { computed } from "vue";
+import { useRoute, RouterLink } from "vue-router";
 const route = useRoute();
-const title = ref("Quote generator");
+const pageTitles = {
+    "/": "Quote generator",
+    "/emoji": "Emoji generator",
+};
+const title = computed(() => pageTitles[route.path] ?? "App generator");
 const navItems = [
     { label: "Quotes", to: "/" },
     { label: "Emoji", to: "/emoji" },
@@ -32,10 +36,6 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 });
 /** @type {__VLS_StyleScopedClasses['brand-mark']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({});
-__VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
-    ...{ class: "eyebrow" },
-});
-/** @type {__VLS_StyleScopedClasses['eyebrow']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.h1, __VLS_intrinsics.h1)({});
 (__VLS_ctx.title);
 __VLS_asFunctionalElement1(__VLS_intrinsics.nav, __VLS_intrinsics.nav)({

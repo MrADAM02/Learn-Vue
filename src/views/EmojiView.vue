@@ -3,8 +3,7 @@ import { onMounted, ref } from "vue";
 
 const emoji = ref("😀");
 const isLoading = ref(false);
-const selectedCategory = ref("all");
-const categories = ["all", "smileys", "animals", "food", "travel", "activity"];
+const copyMessage = ref("Copy emoji");
 
 const decodeHtmlEntity = (entity: string) => {
   const parser = new DOMParser();
@@ -40,25 +39,30 @@ const fetchRandomEmoji = async () => {
   isLoading.value = true;
 
   try {
-    const url =
-      selectedCategory.value === "all"
-        ? "https://emojihub.yurace.pro/api/random"
-        : `https://emojihub.yurace.pro/api/all/category/${selectedCategory.value}`;
-
-    const response = await fetch(url);
+    const response = await fetch("https://emojihub.yurace.pro/api/random");
 
     if (!response.ok) {
       throw new Error("Failed to load emoji");
     }
 
     const data = await response.json();
-    const payload = Array.isArray(data) ? data : [data];
-    const randomItem = payload[Math.floor(Math.random() * payload.length)];
-    emoji.value = selectEmojiValue(randomItem);
+    emoji.value = selectEmojiValue(data);
   } catch {
     emoji.value = "😅";
   } finally {
     isLoading.value = false;
+  }
+};
+
+const copyEmoji = async () => {
+  try {
+    await navigator.clipboard.writeText(emoji.value);
+    copyMessage.value = "Copied!";
+    window.setTimeout(() => {
+      copyMessage.value = "Copy emoji";
+    }, 1200);
+  } catch {
+    copyMessage.value = "Copy failed";
   }
 };
 
@@ -70,24 +74,18 @@ onMounted(() => {
 <template>
   <div class="emoji-page">
     <h2>Random Emoji</h2>
-    <p>Pick a category and fetch a fun emoji from the API.</p>
-
-    <div class="category-row">
-      <button
-        v-for="category in categories"
-        :key="category"
-        class="chip"
-        :class="{ active: selectedCategory === category }"
-        @click="selectedCategory = category"
-      >
-        {{ category }}
-      </button>
-    </div>
+    <p>Fetch a fun emoji from the API, then copy it to your clipboard.</p>
 
     <div class="emoji-card">
       <div class="emoji-display" v-if="isLoading">Loading...</div>
       <div class="emoji-display" v-else>{{ emoji }}</div>
-      <button @click="fetchRandomEmoji">Get another emoji</button>
+
+      <div class="emoji-actions">
+        <button @click="fetchRandomEmoji" class="secondary">
+          Get another emoji
+        </button>
+        <button @click="copyEmoji" class="primary">{{ copyMessage }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -100,28 +98,6 @@ onMounted(() => {
   gap: 16px;
   color: #f4f8fb;
   text-align: center;
-}
-
-.category-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-
-.chip {
-  border: 0;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  color: #f4f8fb;
-  cursor: pointer;
-  text-transform: capitalize;
-}
-
-.chip.active {
-  background: #ffffff;
-  color: #406473;
 }
 
 .emoji-card {
@@ -145,13 +121,39 @@ onMounted(() => {
   transform: scale(1.08);
 }
 
-button {
+.emoji-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.emoji-actions button {
+  flex: 1 1 auto;
+  min-width: 140px;
   border: 0;
   padding: 10px 16px;
   border-radius: 999px;
-  background: #ffffff;
-  color: #406473;
   cursor: pointer;
   font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.emoji-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.emoji-actions button.primary {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.emoji-actions button.secondary {
+  background: rgba(255, 255, 255, 0.18);
+  color: #f4f8fb;
 }
 </style>
