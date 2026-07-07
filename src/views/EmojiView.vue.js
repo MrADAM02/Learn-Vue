@@ -91,6 +91,7 @@ let __VLS_directives;
 /** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
 /** @type {__VLS_StyleScopedClasses['dark']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-display']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-skeleton-line']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
@@ -114,6 +115,24 @@ if (__VLS_ctx.isLoading) {
         ...{ class: "emoji-display" },
     });
     /** @type {__VLS_StyleScopedClasses['emoji-display']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "emoji-skeleton" },
+        'aria-hidden': "true",
+    });
+    /** @type {__VLS_StyleScopedClasses['emoji-skeleton']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "emoji-skeleton-shape" },
+    });
+    /** @type {__VLS_StyleScopedClasses['emoji-skeleton-shape']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "emoji-skeleton-line" },
+    });
+    /** @type {__VLS_StyleScopedClasses['emoji-skeleton-line']} */ ;
+    __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+        ...{ class: "emoji-skeleton-line short" },
+    });
+    /** @type {__VLS_StyleScopedClasses['emoji-skeleton-line']} */ ;
+    /** @type {__VLS_StyleScopedClasses['short']} */ ;
 }
 else {
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({

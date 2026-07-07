@@ -80,7 +80,13 @@ onMounted(() => {
     <p>Fetch a fun emoji from the API, then copy it to your clipboard.</p>
 
     <div class="emoji-card">
-      <div class="emoji-display" v-if="isLoading">Loading...</div>
+      <div class="emoji-display" v-if="isLoading">
+        <div class="emoji-skeleton" aria-hidden="true">
+          <div class="emoji-skeleton-shape"></div>
+          <div class="emoji-skeleton-line"></div>
+          <div class="emoji-skeleton-line short"></div>
+        </div>
+      </div>
       <div class="emoji-display" v-else>{{ emoji }}</div>
 
       <div class="emoji-actions">
@@ -164,6 +170,46 @@ onMounted(() => {
 
 .emoji-display:hover {
   transform: scale(1.08);
+}
+
+.emoji-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(220px, 100%);
+  padding: 18px 20px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 37%, #e2e8f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease infinite;
+}
+
+.emoji-skeleton-shape {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.emoji-skeleton-line {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.emoji-skeleton-line.short {
+  width: 60%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .emoji-actions {
