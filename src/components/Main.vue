@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { programmingQuotes } from "@/data/programmingQuotes";
 
 const props = defineProps<{ isDarkMode: boolean }>();
@@ -42,108 +42,73 @@ const copyQuote = async () => {
   }
 };
 
-generateQuote();
+onMounted(() => {
+  generateQuote();
+});
 </script>
 
 <template>
-  <main :class="themeClass">
-    <div class="top-row">
-      <div class="badge">Developer Inspiration</div>
+  <main :class="['page-shell', 'quote-shell', themeClass]">
+    <div class="quote-header">
+      <span class="badge">Developer Inspiration</span>
     </div>
-    <section>
+
+    <section class="quote-card" aria-live="polite">
       <p :class="{ transitioning: isTransitioning }">{{ quote }}</p>
       <span>{{ author }}</span>
     </section>
+
     <div class="footer-row">
       <div class="actions">
-        <button class="secondary-btn" @click="copyQuote">
+        <button class="button-secondary" @click="copyQuote">
           {{ copied ? "Copied!" : "Copy" }}
         </button>
-        <button @click="generateQuote">Generate</button>
+        <button class="button-primary" @click="generateQuote">Generate</button>
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-main {
-  width: 100%;
+.quote-shell {
   max-width: 760px;
-  border-radius: 32px;
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  box-shadow: 0 28px 80px rgba(8, 15, 28, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border 0.3s ease;
+  gap: 20px;
 }
 
-main.light {
-  background: rgba(255, 255, 255, 0.85);
-  color: #102a43;
-}
-
-main.dark {
-  background: rgba(8, 18, 35, 0.86);
-  color: #f8fafc;
-}
-
-.top-row {
+.quote-header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
 }
 
 .badge {
-  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
   color: white;
   padding: 10px 16px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.secondary-btn {
-  border: 0;
-  padding: 12px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.15);
-  color: inherit;
-}
-
-section {
+.quote-card {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 28px 26px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  padding: 28px 24px;
+  border-radius: 24px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border-soft);
   min-height: 180px;
   justify-content: center;
-}
-
-main.dark section {
-  background: rgba(15, 23, 42, 0.7);
 }
 
 p {
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   line-height: 1.7;
   text-align: center;
   color: inherit;
@@ -165,97 +130,43 @@ p::after {
 
 span {
   align-self: end;
-  color: #406473;
+  color: var(--text-secondary);
   font-weight: 700;
   font-size: 0.95rem;
-}
-
-main.dark span {
-  color: #9dc4d0;
-}
-
-span::before {
-  content: "- ";
 }
 
 .footer-row {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  color: #56717a;
-}
-
-small {
-  font-size: 0.9rem;
+  justify-content: center;
 }
 
 .actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.secondary-btn {
-  background: rgba(64, 100, 115, 0.16);
-  color: inherit;
-}
-
-button {
-  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
-  color: white;
-  border: 0;
-  padding: 14px 22px;
-  font-size: 1rem;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out,
-    opacity 0.2s ease;
-  box-shadow: 0 16px 34px rgba(56, 189, 248, 0.22);
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(56, 189, 248, 0.28);
-}
-
-main.dark .theme-btn,
-main.dark .secondary-btn {
-  background: rgba(255, 255, 255, 0.12);
+.actions button {
+  flex: 0 1 auto;
 }
 
 @media (max-width: 720px) {
-  main {
-    padding: 24px;
-    border-radius: 24px;
+  .quote-header {
+    justify-content: center;
   }
 
-  .top-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-row {
-    flex-direction: column;
-    align-items: stretch;
+  .quote-card {
+    padding: 22px 18px;
   }
 
   .actions {
     width: 100%;
-    flex-wrap: wrap;
   }
 
   .actions button {
     flex: 1 1 140px;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
   }
 }
 </style>

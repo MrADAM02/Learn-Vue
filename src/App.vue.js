@@ -1,8 +1,7 @@
 import { computed, ref } from "vue";
-import { RouterView, useRoute } from "vue-router";
+import { RouterView } from "vue-router";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-const route = useRoute();
 const isDarkMode = ref(false);
 const themeClass = computed(() => isDarkMode.value ? "dark-theme" : "light-theme");
 const toggleTheme = () => {
@@ -15,11 +14,14 @@ const __VLS_ctx = {
 let __VLS_components;
 let __VLS_intrinsics;
 let __VLS_directives;
-/** @type {__VLS_StyleScopedClasses['light-theme']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark-theme']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: (__VLS_ctx.themeClass) },
+    ...{ class: (['theme-shell', __VLS_ctx.themeClass]) },
 });
+/** @type {__VLS_StyleScopedClasses['theme-shell']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+    ...{ class: "app-frame" },
+});
+/** @type {__VLS_StyleScopedClasses['app-frame']} */ ;
 const __VLS_0 = Header;
 // @ts-ignore
 const __VLS_1 = __VLS_asFunctionalComponent1(__VLS_0, new __VLS_0({

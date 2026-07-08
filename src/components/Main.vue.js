@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { programmingQuotes } from "@/data/programmingQuotes";
 const props = defineProps();
 const initialQuote = programmingQuotes[0] ?? {
@@ -33,7 +33,9 @@ const copyQuote = async () => {
         copied.value = false;
     }
 };
-generateQuote();
+onMounted(() => {
+    generateQuote();
+});
 const __VLS_ctx = {
     ...{},
     ...{},
@@ -43,28 +45,29 @@ const __VLS_ctx = {
 let __VLS_components;
 let __VLS_intrinsics;
 let __VLS_directives;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['secondary-btn']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['secondary-btn']} */ ;
-/** @type {__VLS_StyleScopedClasses['top-row']} */ ;
-/** @type {__VLS_StyleScopedClasses['footer-row']} */ ;
+/** @type {__VLS_StyleScopedClasses['actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['quote-header']} */ ;
+/** @type {__VLS_StyleScopedClasses['quote-card']} */ ;
 /** @type {__VLS_StyleScopedClasses['actions']} */ ;
 /** @type {__VLS_StyleScopedClasses['actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.main, __VLS_intrinsics.main)({
-    ...{ class: (__VLS_ctx.themeClass) },
+    ...{ class: (['page-shell', 'quote-shell', __VLS_ctx.themeClass]) },
 });
+/** @type {__VLS_StyleScopedClasses['page-shell']} */ ;
+/** @type {__VLS_StyleScopedClasses['quote-shell']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "top-row" },
+    ...{ class: "quote-header" },
 });
-/** @type {__VLS_StyleScopedClasses['top-row']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+/** @type {__VLS_StyleScopedClasses['quote-header']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.span, __VLS_intrinsics.span)({
     ...{ class: "badge" },
 });
 /** @type {__VLS_StyleScopedClasses['badge']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.section, __VLS_intrinsics.section)({});
+__VLS_asFunctionalElement1(__VLS_intrinsics.section, __VLS_intrinsics.section)({
+    ...{ class: "quote-card" },
+    'aria-live': "polite",
+});
+/** @type {__VLS_StyleScopedClasses['quote-card']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
     ...{ class: ({ transitioning: __VLS_ctx.isTransitioning }) },
 });
@@ -82,13 +85,15 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 /** @type {__VLS_StyleScopedClasses['actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.copyQuote) },
-    ...{ class: "secondary-btn" },
+    ...{ class: "button-secondary" },
 });
-/** @type {__VLS_StyleScopedClasses['secondary-btn']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-secondary']} */ ;
 (__VLS_ctx.copied ? "Copied!" : "Copy");
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.generateQuote) },
+    ...{ class: "button-primary" },
 });
+/** @type {__VLS_StyleScopedClasses['button-primary']} */ ;
 // @ts-ignore
 [themeClass, isTransitioning, quote, author, copyQuote, copied, generateQuote,];
 const __VLS_export = (await import('vue')).defineComponent({

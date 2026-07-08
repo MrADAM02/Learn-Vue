@@ -12,13 +12,12 @@ const fetchRandomLogo = async () => {
         if (!res.ok)
             throw new Error("Network");
         const data = await res.json();
-        // API returns an object like the example in the user's message
-        logo.value = data.logo ?? data.logo ?? "";
+        logo.value = data.logo ?? "";
         name.value = data.name ?? "";
         title.value = data.example_title ?? "";
         description.value = data.example_description ?? "";
     }
-    catch (e) {
+    catch {
         logo.value = "";
         name.value = "Unavailable";
         title.value = "";
@@ -46,26 +45,35 @@ const __VLS_ctx = {
 let __VLS_components;
 let __VLS_intrinsics;
 let __VLS_directives;
+/** @type {__VLS_StyleScopedClasses['logo-preview']} */ ;
 /** @type {__VLS_StyleScopedClasses['skeleton-badge']} */ ;
 /** @type {__VLS_StyleScopedClasses['skeleton-ring']} */ ;
 /** @type {__VLS_StyleScopedClasses['skeleton-line']} */ ;
 /** @type {__VLS_StyleScopedClasses['skeleton-line']} */ ;
-/** @type {__VLS_StyleScopedClasses['logo-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['logo-actions']} */ ;
 /** @type {__VLS_StyleScopedClasses['logo-card']} */ ;
-/** @type {__VLS_StyleScopedClasses['logo-preview']} */ ;
+/** @type {__VLS_StyleScopedClasses['logo-actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['logo-actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "logo-page" },
+    ...{ class: "page-shell logo-page" },
 });
+/** @type {__VLS_StyleScopedClasses['page-shell']} */ ;
 /** @type {__VLS_StyleScopedClasses['logo-page']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({});
-__VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
-    ...{ class: "muted" },
-});
-/** @type {__VLS_StyleScopedClasses['muted']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "logo-card" },
+    ...{ class: "page-heading" },
 });
+/** @type {__VLS_StyleScopedClasses['page-heading']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({
+    ...{ class: "page-title" },
+});
+/** @type {__VLS_StyleScopedClasses['page-title']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+    ...{ class: "page-subtitle" },
+});
+/** @type {__VLS_StyleScopedClasses['page-subtitle']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+    ...{ class: "page-card logo-card" },
+});
+/** @type {__VLS_StyleScopedClasses['page-card']} */ ;
 /** @type {__VLS_StyleScopedClasses['logo-card']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "logo-preview" },
@@ -168,21 +176,21 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 /** @type {__VLS_StyleScopedClasses['logo-actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.fetchRandomLogo) },
-    ...{ class: "secondary" },
+    ...{ class: "button-secondary" },
 });
-/** @type {__VLS_StyleScopedClasses['secondary']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-secondary']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.a, __VLS_intrinsics.a)({
     href: (__VLS_ctx.logo),
     target: "_blank",
     rel: "noreferrer",
-    ...{ class: "link-btn" },
+    ...{ class: "button-link" },
 });
-/** @type {__VLS_StyleScopedClasses['link-btn']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-link']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.copyUrl) },
-    ...{ class: "primary" },
+    ...{ class: "button-primary" },
 });
-/** @type {__VLS_StyleScopedClasses['primary']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-primary']} */ ;
 (__VLS_ctx.copyMessage);
 // @ts-ignore
 [isLoading, isLoading, logo, logo, logo, name, name, title, description, fetchRandomLogo, copyUrl, copyMessage,];

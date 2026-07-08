@@ -12,7 +12,7 @@ let __VLS_intrinsics;
 let __VLS_directives;
 __VLS_asFunctionalElement1(__VLS_intrinsics.footer, __VLS_intrinsics.footer)({});
 __VLS_asFunctionalElement1(__VLS_intrinsics.a, __VLS_intrinsics.a)({
-    href: __VLS_ctx.href,
+    href: (__VLS_ctx.href),
     target: "_blank",
     rel: "noopener noreferrer",
 });

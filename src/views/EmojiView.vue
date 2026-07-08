@@ -75,11 +75,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="[themeClass, 'emoji-page']">
-    <h2>Random Emoji</h2>
-    <p>Fetch a fun emoji from the API, then copy it to your clipboard.</p>
+  <div :class="['page-shell', 'emoji-page', themeClass]">
+    <div class="page-heading">
+      <h2 class="page-title">Random Emoji</h2>
+      <p class="page-subtitle">
+        Fetch a fun emoji from the API, then copy it to your clipboard.
+      </p>
+    </div>
 
-    <div class="emoji-card">
+    <div class="page-card emoji-card">
       <div class="emoji-display" v-if="isLoading">
         <div class="emoji-skeleton" aria-hidden="true">
           <div class="emoji-skeleton-shape"></div>
@@ -90,10 +94,12 @@ onMounted(() => {
       <div class="emoji-display" v-else>{{ emoji }}</div>
 
       <div class="emoji-actions">
-        <button @click="fetchRandomEmoji" class="secondary">
+        <button @click="fetchRandomEmoji" class="button-secondary">
           Get another emoji
         </button>
-        <button @click="copyEmoji" class="primary">{{ copyMessage }}</button>
+        <button @click="copyEmoji" class="button-primary">
+          {{ copyMessage }}
+        </button>
       </div>
     </div>
   </div>
@@ -101,64 +107,15 @@ onMounted(() => {
 
 <style scoped>
 .emoji-page {
-  width: 100%;
   max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 28px;
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 28px 80px rgba(8, 15, 28, 0.12);
-  text-align: center;
-}
-
-.emoji-page.dark {
-  background: rgba(6, 12, 28, 0.8);
-}
-
-.emoji-page.light {
-  color: #102a43;
-}
-
-.emoji-page.dark {
-  color: #f4f8fb;
 }
 
 .emoji-card {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 28px;
-  border-radius: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 22px;
   min-width: min(320px, 90vw);
-  border: 1px solid rgba(51, 65, 85, 0.08);
-}
-
-.emoji-page.dark .emoji-card {
-  background: rgba(15, 23, 42, 0.92);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.emoji-page.dark .emoji-card {
-  background: rgba(15, 23, 42, 0.7);
-}
-
-.emoji-page.light {
-  color: #0f172a;
-}
-
-.emoji-page.dark {
-  color: #f4f8fb;
-}
-
-.emoji-page.dark .emoji-actions button.secondary {
-  background: rgba(255, 255, 255, 0.12);
-  color: #f4f8fb;
 }
 
 .emoji-display {
@@ -223,32 +180,15 @@ onMounted(() => {
 .emoji-actions button {
   flex: 1 1 auto;
   min-width: 140px;
-  border: 0;
-  padding: 10px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 700;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
-.emoji-actions button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-}
+@media (max-width: 720px) {
+  .emoji-card {
+    min-width: 100%;
+  }
 
-.emoji-actions button.primary {
-  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
-  color: white;
-}
-
-.emoji-actions button.secondary {
-  background: rgba(15, 23, 42, 0.12);
-  color: inherit;
-}
-
-.emoji-actions button.secondary:hover {
-  background: rgba(15, 23, 42, 0.18);
+  .emoji-actions button {
+    flex-basis: 100%;
+  }
 }
 </style>

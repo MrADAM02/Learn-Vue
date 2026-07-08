@@ -29,6 +29,7 @@ let __VLS_directives;
 /** @type {__VLS_StyleScopedClasses['nav-link']} */ ;
 /** @type {__VLS_StyleScopedClasses['nav-link']} */ ;
 /** @type {__VLS_StyleScopedClasses['theme-toggle']} */ ;
+/** @type {__VLS_StyleScopedClasses['theme-toggle']} */ ;
 /** @type {__VLS_StyleScopedClasses['topbar']} */ ;
 /** @type {__VLS_StyleScopedClasses['nav-group']} */ ;
 /** @type {__VLS_StyleScopedClasses['nav-links']} */ ;

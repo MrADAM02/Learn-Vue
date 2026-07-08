@@ -62,14 +62,13 @@ const isActive = (path: string) => route.path === path;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 28px;
-  padding: 18px 24px;
-  border-radius: 28px;
-  background: rgba(15, 23, 42, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 24px 60px rgba(4, 10, 27, 0.25);
-  backdrop-filter: blur(22px);
+  gap: 16px;
+  padding: clamp(16px, 2.5vw, 22px) clamp(16px, 3vw, 24px);
+  border-radius: 24px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
 }
 
 .brand-block {
@@ -85,9 +84,9 @@ const isActive = (path: string) => route.path === path;
   height: 48px;
   border-radius: 16px;
   font-size: 1.2rem;
-  background: linear-gradient(135deg, #8b5cf6, #38bdf8);
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
   color: white;
-  box-shadow: 0 16px 32px rgba(56, 189, 248, 0.18);
+  box-shadow: 0 14px 28px rgba(56, 189, 248, 0.18);
 }
 
 .brand-details {
@@ -101,54 +100,54 @@ const isActive = (path: string) => route.path === path;
   font-size: 0.72rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #7dd3fc;
+  color: var(--accent-start);
 }
 
 h1 {
   margin: 0;
-  font-size: 1.25rem;
-  color: #f8fafc;
+  font-size: 1.2rem;
+  color: var(--text-primary);
 }
 
 .nav-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .nav-links {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .nav-link {
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 999px;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  color: white;
+  color: var(--text-primary);
   background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-link.active {
-  color: #0f172a;
-  background: #f8fafc;
+  color: var(--button-text);
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
 }
 
 .theme-toggle {
   border: 0;
-  padding: 11px 18px;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #f8fafc;
-  font-size: 0.95rem;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text-primary);
+  font-size: 0.94rem;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -156,8 +155,12 @@ h1 {
     transform 0.2s ease;
 }
 
+.dark-theme .theme-toggle {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--button-text);
+}
+
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
 }
 

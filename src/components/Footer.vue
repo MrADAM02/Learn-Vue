@@ -11,10 +11,8 @@ const href = ref("https://github.com/MrADAM02");
 <template>
   <footer>
     Created by
-    <a :href target="_blank" rel="noopener noreferrer"
-      ><span>
-        {{ author }}
-      </span>
+    <a :href="href" target="_blank" rel="noopener noreferrer">
+      <span>{{ author }}</span>
     </a>
     &copy; {{ year }}
   </footer>
@@ -27,24 +25,25 @@ footer {
   align-items: center;
   gap: 6px;
   margin: 0 auto;
-  padding: 18px 0 12px;
+  padding: 14px 0 6px;
   text-align: center;
-  color: #cdd6d9;
+  color: var(--text-secondary);
   font-size: 0.95rem;
+  flex-wrap: wrap;
 }
 
 span {
-  font-family: cursive;
+  font-family: "Poppins", cursive;
+  font-weight: 700;
+  color: var(--accent-start);
 }
 
 a {
-  color: #38bdf8;
   text-decoration: none;
 }
 
 @media (max-width: 640px) {
   footer {
-    padding-bottom: 14px;
     font-size: 0.9rem;
   }
 }

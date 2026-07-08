@@ -74,41 +74,32 @@ const __VLS_ctx = {
 let __VLS_components;
 let __VLS_intrinsics;
 let __VLS_directives;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-card']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-card']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['light']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-/** @type {__VLS_StyleScopedClasses['dark']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-display']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-skeleton-line']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
+/** @type {__VLS_StyleScopedClasses['emoji-card']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['secondary']} */ ;
-/** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
-/** @type {__VLS_StyleScopedClasses['secondary']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: ([__VLS_ctx.themeClass, 'emoji-page']) },
+    ...{ class: (['page-shell', 'emoji-page', __VLS_ctx.themeClass]) },
 });
+/** @type {__VLS_StyleScopedClasses['page-shell']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-page']} */ ;
-__VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({});
-__VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({});
 __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "emoji-card" },
+    ...{ class: "page-heading" },
 });
+/** @type {__VLS_StyleScopedClasses['page-heading']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.h2, __VLS_intrinsics.h2)({
+    ...{ class: "page-title" },
+});
+/** @type {__VLS_StyleScopedClasses['page-title']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.p, __VLS_intrinsics.p)({
+    ...{ class: "page-subtitle" },
+});
+/** @type {__VLS_StyleScopedClasses['page-subtitle']} */ ;
+__VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
+    ...{ class: "page-card emoji-card" },
+});
+/** @type {__VLS_StyleScopedClasses['page-card']} */ ;
 /** @type {__VLS_StyleScopedClasses['emoji-card']} */ ;
 if (__VLS_ctx.isLoading) {
     __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
@@ -147,14 +138,14 @@ __VLS_asFunctionalElement1(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 /** @type {__VLS_StyleScopedClasses['emoji-actions']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.fetchRandomEmoji) },
-    ...{ class: "secondary" },
+    ...{ class: "button-secondary" },
 });
-/** @type {__VLS_StyleScopedClasses['secondary']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-secondary']} */ ;
 __VLS_asFunctionalElement1(__VLS_intrinsics.button, __VLS_intrinsics.button)({
     ...{ onClick: (__VLS_ctx.copyEmoji) },
-    ...{ class: "primary" },
+    ...{ class: "button-primary" },
 });
-/** @type {__VLS_StyleScopedClasses['primary']} */ ;
+/** @type {__VLS_StyleScopedClasses['button-primary']} */ ;
 (__VLS_ctx.copyMessage);
 // @ts-ignore
 [themeClass, isLoading, emoji, fetchRandomEmoji, copyEmoji, copyMessage,];

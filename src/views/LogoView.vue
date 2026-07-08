@@ -14,12 +14,11 @@ const fetchRandomLogo = async () => {
     const res = await fetch("https://www.logotypes.dev/random/data");
     if (!res.ok) throw new Error("Network");
     const data = await res.json();
-    // API returns an object like the example in the user's message
-    logo.value = data.logo ?? data.logo ?? "";
+    logo.value = data.logo ?? "";
     name.value = data.name ?? "";
     title.value = data.example_title ?? "";
     description.value = data.example_description ?? "";
-  } catch (e) {
+  } catch {
     logo.value = "";
     name.value = "Unavailable";
     title.value = "";
@@ -43,11 +42,16 @@ onMounted(fetchRandomLogo);
 </script>
 
 <template>
-  <div class="logo-page">
-    <h2>Random Logo</h2>
-    <p class="muted">Generate a random brand mark for inspiration.</p>
+  <div class="page-shell logo-page">
+    <div class="page-heading">
+      <h2 class="page-title">Random Logo</h2>
+      <p class="page-subtitle">
+        Generate a random brand mark for inspiration and keep the best ideas in
+        your pocket.
+      </p>
+    </div>
 
-    <div class="logo-card">
+    <div class="page-card logo-card">
       <div class="logo-preview">
         <div v-if="isLoading" class="skeleton-card" aria-hidden="true">
           <div class="skeleton-graphic">
@@ -76,11 +80,15 @@ onMounted(fetchRandomLogo);
       </div>
 
       <div class="logo-actions">
-        <button @click="fetchRandomLogo" class="secondary">Another</button>
-        <a :href="logo" target="_blank" rel="noreferrer" class="link-btn"
-          >Open</a
-        >
-        <button @click="copyUrl" class="primary">{{ copyMessage }}</button>
+        <button @click="fetchRandomLogo" class="button-secondary">
+          Another
+        </button>
+        <a :href="logo" target="_blank" rel="noreferrer" class="button-link">
+          Open
+        </a>
+        <button @click="copyUrl" class="button-primary">
+          {{ copyMessage }}
+        </button>
       </div>
     </div>
   </div>
@@ -88,37 +96,33 @@ onMounted(fetchRandomLogo);
 
 <style scoped>
 .logo-page {
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 760px;
+}
+
+.logo-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
-  text-align: center;
 }
-.muted {
-  color: rgba(0, 0, 0, 0.45);
-}
-.logo-card {
+
+.logo-preview {
   width: 100%;
-  padding: 22px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.95);
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: center;
-  box-shadow: 0 18px 50px rgba(8, 15, 28, 0.08);
+  justify-content: center;
 }
+
 .logo-preview img {
   max-width: 320px;
+  width: 100%;
   height: auto;
   display: block;
+  border-radius: 16px;
 }
+
 .placeholder {
   padding: 48px 20px;
-  color: #667;
+  color: var(--text-secondary);
 }
 
 .skeleton-card {
@@ -201,6 +205,7 @@ onMounted(fetchRandomLogo);
     background-position: -100% 0;
   }
 }
+
 .logo-meta {
   max-width: 640px;
   width: 100%;
@@ -208,6 +213,7 @@ onMounted(fetchRandomLogo);
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  text-align: center;
 }
 
 .meta-skeleton {
@@ -237,51 +243,37 @@ onMounted(fetchRandomLogo);
   display: block;
   font-size: 1.05rem;
 }
+
 .brand-title {
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 600;
   margin-top: 4px;
 }
+
 .brand-desc {
-  color: #475569;
+  color: var(--text-secondary);
   margin-top: 8px;
 }
+
 .logo-actions {
   display: flex;
   gap: 12px;
   width: 100%;
   justify-content: center;
-}
-.logo-actions .primary {
-  background: linear-gradient(135deg, #38bdf8, #6366f1);
-  color: white;
-  padding: 10px 18px;
-  border-radius: 999px;
-  border: 0;
-}
-.logo-actions .secondary {
-  background: rgba(15, 23, 42, 0.08);
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 0;
-}
-.link-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.04);
-  text-decoration: none;
-  color: inherit;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 720px) {
   .logo-card {
     padding: 18px;
   }
-  .logo-preview img {
-    max-width: 100%;
+
+  .logo-actions {
+    flex-direction: column;
+  }
+
+  .logo-actions > * {
+    width: 100%;
   }
 }
 </style>
