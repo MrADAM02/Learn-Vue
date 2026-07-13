@@ -14,6 +14,7 @@ const pageTitles: Record<string, string> = {
   "/": "Quote generator",
   "/emoji": "Emoji generator",
   "/logo": "Logo generator",
+  "/recipe": "Recipe generator",
 };
 
 const title = computed(() => pageTitles[route.path] ?? "App generator");
@@ -22,6 +23,7 @@ const navItems = [
   { label: "Quotes", to: "/" },
   { label: "Emoji", to: "/emoji" },
   { label: "Logos", to: "/logo" },
+  { label: "Recipes", to: "/recipe" },
 ];
 
 const isActive = (path: string) => route.path === path;
