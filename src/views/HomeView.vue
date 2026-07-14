@@ -9,8 +9,7 @@ const props = defineProps<{ isDarkMode: boolean }>();
     <div class="page-heading">
       <h2 class="page-title">Quote Generator</h2>
       <p class="page-subtitle">
-        Explore programming quotes and discover a calmer, more polished way to
-        browse inspiration.
+        Explore programming quotes and discover a calmer, more polished way to browse inspiration.
       </p>
     </div>
 

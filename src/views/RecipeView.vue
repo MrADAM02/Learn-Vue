@@ -131,9 +131,7 @@ onMounted(() => {
       <div v-else class="placeholder">Could not load a recipe right now.</div>
 
       <div class="recipe-actions">
-        <button @click="fetchRandomRecipe" class="button-secondary">
-          Get another recipe
-        </button>
+        <button @click="fetchRandomRecipe" class="button-secondary">Get another recipe</button>
         <button @click="copyRecipe" class="button-primary" :disabled="!recipe">
           {{ copyMessage }}
         </button>

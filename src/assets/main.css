@@ -39,11 +39,7 @@
   --surface-strong: rgba(8, 18, 35, 0.9);
   --surface-raised: rgba(15, 23, 42, 0.82);
   --surface-soft: rgba(15, 23, 42, 0.72);
-  --surface-card: linear-gradient(
-    160deg,
-    rgba(30, 41, 59, 0.75) 0%,
-    rgba(15, 23, 42, 0.6) 100%
-  );
+  --surface-card: linear-gradient(160deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.6) 100%);
   --text-primary: #f8fafc;
   --text-secondary: #c7d2fe;
   --border-soft: rgba(255, 255, 255, 0.12);
@@ -147,11 +143,7 @@ textarea {
 }
 
 .button-primary {
-  background: linear-gradient(
-    135deg,
-    var(--accent-start) 0%,
-    var(--accent-end) 100%
-  );
+  background: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
   color: var(--button-text);
   box-shadow: 0 14px 28px rgba(56, 189, 248, 0.2);
 }

@@ -5,9 +5,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
 const isDarkMode = ref(false);
-const themeClass = computed(() =>
-  isDarkMode.value ? "dark-theme" : "light-theme",
-);
+const themeClass = computed(() => (isDarkMode.value ? "dark-theme" : "light-theme"));
 
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value;

@@ -55,8 +55,7 @@ export const programmingQuotes: ProgrammingQuote[] = [
     author: "Eric S. Raymond",
   },
   {
-    quote:
-      "In theory, theory and practice are the same. In practice, they’re not.",
+    quote: "In theory, theory and practice are the same. In practice, they’re not.",
     author: "Yoggi Berra",
   },
   {
@@ -105,8 +104,7 @@ export const programmingQuotes: ProgrammingQuote[] = [
     author: "Jamie Zawinski",
   },
   {
-    quote:
-      "You can use an eraser on the drafting table or a sledgehammer on the construction site",
+    quote: "You can use an eraser on the drafting table or a sledgehammer on the construction site",
     author: "Frank Lloyd Wright",
   },
   {
@@ -132,13 +130,11 @@ export const programmingQuotes: ProgrammingQuote[] = [
     author: "Albert Einstein",
   },
   {
-    quote:
-      "Being a good software engineer is 3% talent, 97% not being distracted by the internet.",
+    quote: "Being a good software engineer is 3% talent, 97% not being distracted by the internet.",
     author: "Unknown",
   },
   {
-    quote:
-      "Any sufficiently advanced technology is indistinguishable from magic.",
+    quote: "Any sufficiently advanced technology is indistinguishable from magic.",
     author: "Arthur C. Clarke",
   },
   {
@@ -167,23 +163,19 @@ export const programmingQuotes: ProgrammingQuote[] = [
     author: "Stewart Brand",
   },
   {
-    quote:
-      "The most disastrous thing that you can ever learn is your first programming language.",
+    quote: "The most disastrous thing that you can ever learn is your first programming language.",
     author: "Alan Kay",
   },
   {
-    quote:
-      "Optimism is an occupational hazard of programming. Feedback is the treatment.",
+    quote: "Optimism is an occupational hazard of programming. Feedback is the treatment.",
     author: "Kent Beck",
   },
   {
-    quote:
-      "The function of good software is to make the complex appear to be simple.",
+    quote: "The function of good software is to make the complex appear to be simple.",
     author: "Grady Booch",
   },
   {
-    quote:
-      "I'm not a great programmer. I'm just a good programmer with great habits.",
+    quote: "I'm not a great programmer. I'm just a good programmer with great habits.",
     author: "Kent Beck",
   },
 ];

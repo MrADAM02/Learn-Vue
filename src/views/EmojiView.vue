@@ -10,8 +10,7 @@ const copyMessage = ref("Copy emoji");
 
 const decodeHtmlEntity = (entity: string) => {
   const parser = new DOMParser();
-  const decoded = parser.parseFromString(entity, "text/html").documentElement
-    .textContent;
+  const decoded = parser.parseFromString(entity, "text/html").documentElement.textContent;
   return decoded || entity;
 };
 
@@ -22,19 +21,28 @@ const parseUnicodeEntry = (unicodeEntry: string) => {
     .map((part) => part.replace(/^U\+/i, ""));
 
   try {
-    return String.fromCodePoint(
-      ...codepoints.map((code) => parseInt(code, 16)),
-    );
+    return String.fromCodePoint(...codepoints.map((code) => parseInt(code, 16)));
   } catch {
     return unicodeEntry;
   }
 };
 
-const selectEmojiValue = (item: any) => {
+type EmojiHubEntry = {
+  unicode?: string[];
+  htmlCode?: string[];
+  char?: string;
+};
+
+const selectEmojiValue = (item: EmojiHubEntry | null | undefined) => {
   if (!item) return "😀";
-  if (item?.unicode?.length) return parseUnicodeEntry(item.unicode[0]);
-  if (item?.htmlCode?.length) return decodeHtmlEntity(item.htmlCode[0]);
-  if (item?.char) return item.char;
+
+  const unicode = item.unicode?.[0];
+  if (unicode) return parseUnicodeEntry(unicode);
+
+  const htmlCode = item.htmlCode?.[0];
+  if (htmlCode) return decodeHtmlEntity(htmlCode);
+
+  if (item.char) return item.char;
   return "😀";
 };
 
@@ -78,9 +86,7 @@ onMounted(() => {
   <div :class="['page-shell', 'emoji-page', themeClass]">
     <div class="page-heading">
       <h2 class="page-title">Random Emoji</h2>
-      <p class="page-subtitle">
-        Fetch a fun emoji from the API, then copy it to your clipboard.
-      </p>
+      <p class="page-subtitle">Fetch a fun emoji from the API, then copy it to your clipboard.</p>
     </div>
 
     <div class="page-card emoji-card">
@@ -94,9 +100,7 @@ onMounted(() => {
       <div class="emoji-display" v-else>{{ emoji }}</div>
 
       <div class="emoji-actions">
-        <button @click="fetchRandomEmoji" class="button-secondary">
-          Get another emoji
-        </button>
+        <button @click="fetchRandomEmoji" class="button-secondary">Get another emoji</button>
         <button @click="copyEmoji" class="button-primary">
           {{ copyMessage }}
         </button>

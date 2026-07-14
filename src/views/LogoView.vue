@@ -46,8 +46,7 @@ onMounted(fetchRandomLogo);
     <div class="page-heading">
       <h2 class="page-title">Random Logo</h2>
       <p class="page-subtitle">
-        Generate a random brand mark for inspiration and keep the best ideas in
-        your pocket.
+        Generate a random brand mark for inspiration and keep the best ideas in your pocket.
       </p>
     </div>
 
@@ -80,12 +79,8 @@ onMounted(fetchRandomLogo);
       </div>
 
       <div class="logo-actions">
-        <button @click="fetchRandomLogo" class="button-secondary">
-          Another
-        </button>
-        <a :href="logo" target="_blank" rel="noreferrer" class="button-link">
-          Open
-        </a>
+        <button @click="fetchRandomLogo" class="button-secondary">Another</button>
+        <a :href="logo" target="_blank" rel="noreferrer" class="button-link"> Open </a>
         <button @click="copyUrl" class="button-primary">
           {{ copyMessage }}
         </button>
